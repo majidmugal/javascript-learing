@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: lightblue;
+        }
+        .form-container{
+            width:300px;
+            margin:80px auto;
+            padding:20px;
+            background:white;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+        h2{
+            text-align: center;
+        }
+        input{
+            width:100%;
+            padding:8px;
+            margin:8px 0;
+            border:1px solid #ccc;
+            border-radius:3px;
+        }
+        button{
+            width:100%;
+            padding:10px;
+            background:#4CAF50;
+            color:white;
+            border:none;
+            border-radius:3px;
+            cursor:pointer;
+        }
+        button:hover{
+            background: #45a049;
+        }
+        .error{
+            color: red;
+            font-size: 12px;
+    }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+    <h2>Registration Form</h2>
+
+    <form id="myForm">
+
+    <label>Name</label>
+    <input type="text" id="name" placeholder="enter your name">
+    <div class="error" id="nameError"></div>
+        
+    <label>Email</label>
+    <input type="email" id="email" placeholder="enter your email">
+    <div class="error" id="emailError"></div>
+
+    <label">Password</label>
+    <input type="password" id="password" placeholder="enter your password">
+    <div class="error" id="passwordError"></div>
+
+    <label>Conform password</label>
+    <input type="password" id="confirmPassword"  placeholder="enter Confirm password">
+    <div class="error" id="confirmError"></div>
+
+    <label>Phone</label>
+    <input type="text" id="phone" placeholder="enter your number">
+    <div class="error" id="phoneError"></div>
+
+    <button type="submit">Registration</button>
+
+    </form>
+
+    </div>
+
+
+    <script>
+
+        let nameInput = document.getElementById("name");
+        let emailInput = document.getElementById("email");
+        let passwordInput = document.getElementById("password");
+        let confirmInput = document.getElementById("confirmPassword");
+        let phoneInput = document.getElementById("phone");
+
+        
+
+        nameInput.addEventListener("input" , function(){
+            let regex =  /^[A-Za-z ]{3,}$/;
+            if(!regex.test(nameInput.value)){
+                document.getElementById("nameError").innerText = "Name must contain at least 3 character";
+            }else{
+                document.getElementById("nameError").innerText="";
+             }   
+        });
+
+        emailInput.addEventListener("input" , function(){
+            let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(!regex.test(emailInput.value)){
+                document.getElementById("emailError").innerText="Enter a valid email";
+            }else{
+                document.getElementById("emailError").innerText="";
+            }
+        });
+
+        passwordInput.addEventListener("input" , function(){
+            let regex = /^(?=.*[A-Z])(?=.*[0-9]).{6,}$/;
+            if(!regex.test(passwordInput.value)){
+                document.getElementById("passwordError").innerText=  "password must contain at least 1 charcater and 1 number";
+            }else{
+                document.getElementById("passwordError").innerText ="";
+            }
+            
+        });
+
+        confirmInput.addEventListener("input" , function(){
+            if (confirmInput.value !== passwordInput.value){
+                document.getElementById("confirmError").innerText="Password do not match";
+            }else{
+                document.getElementById("confirmError").innerText= "";
+            }
+        });
+
+        phoneInput.addEventListener("input", function(){
+            let regex = /^[0-9]{10}$/;
+            if(!regex.test(phoneInput.value)){
+                document.getElementById("phoneError").innerText="phone must be 10 digit"
+            }else{
+                document.getElementById("phoneError").innerText=""
+
+            }
+
+        });
+
+        
+
+ </script>
+
+        
+    
+</body>
+</html>

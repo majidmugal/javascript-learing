@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+        }
+
+        .clock {
+            text-align: center;
+            padding: 40px 60px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+
+            /* Background image settings */
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .time {
+            font-size: 60px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .date {
+            font-size: 25px;
+            margin-top: 10px;
+            opacity: 0.8;
+
+        }
+        .info {
+            font-size: 22px;
+            margin-top: 12px;
+            opacity: 0.8;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #00c6ff;
+            color: black;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="clock" id="clockBox">
+        <div class="time"></div>
+
+        <div class="info" id="day"></div>
+        <div class="info" id="date"></div>
+        <div class="info" id="month"></div>
+        <div class="info" id="year"></div>
+        
+    </div>
+
+    <button onclick="changeBackground()">Change Background</button>
+
+    <script>
+        function start() {
+            setInterval(() => {
+
+                let now = new Date()
+
+                let time = now.toLocaleTimeString()
+
+                let dayName = now.toLocaleString('en-US', { weekday: 'long' })
+                let date = now.getDate()
+                let monthName = now.toLocaleString('en-US', { month: 'long' })
+                let year = now.getFullYear()
+
+
+
+                document.querySelector(".time").innerHTML = time
+                document.getElementById("day").innerHTML = "Day: " + dayName
+                document.getElementById("date").innerHTML = "Date: " + date
+                document.getElementById("month").innerHTML = "Month: " + monthName
+                document.getElementById("year").innerHTML = "Year: " + year
+
+
+            }, 1000)
+        }
+        
+        start()
+
+        
+    </script>
+
+</body>
+</html>

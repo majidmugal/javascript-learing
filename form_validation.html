@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+}
+
+.form-container{
+    width:300px;
+    margin:80px auto;
+    padding:20px;
+    background:white;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:3px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:3px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#45a049;
+}
+
+.error{
+    color:red;
+    font-size:13px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="form-container">
+
+<h2>Registration Form</h2>
+
+<form id="myForm">
+
+<label>Name</label>
+<input type="text" id="name">
+<div class="error" id="nameError"></div>
+
+<label>Email</label>
+<input type="text" id="email">
+<div class="error" id="emailError"></div>
+
+<label>Password</label>
+<input type="password" id="password">
+<div class="error" id="passwordError"></div>
+
+<label>Confirm Password</label>
+<input type="password" id="confirmPassword">
+<div class="error" id="confirmError"></div>
+
+<label>Phone</label>
+<input type="text" id="phone">
+<div class="error" id="phoneError"></div>
+
+<button type="submit">Register</button>
+
+</form>
+
+</div>
+
+<script>
+
+document.getElementById("myForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+let confirmPassword = document.getElementById("confirmPassword").value;
+let phone = document.getElementById("phone").value;
+
+let nameRegex = /^[A-Za-z ]{3,20}$/;
+let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+let phoneRegex = /^[0-9]{10}$/;
+
+let valid = true;
+
+document.getElementById("nameError").innerHTML="";
+document.getElementById("emailError").innerHTML="";
+document.getElementById("passwordError").innerHTML="";
+document.getElementById("confirmError").innerHTML="";
+document.getElementById("phoneError").innerHTML="";
+
+if(!nameRegex.test(name)){
+document.getElementById("nameError").innerHTML="Enter valid name (3-20 letters)";
+valid=false;
+}
+
+if(!emailRegex.test(email)){
+document.getElementById("emailError").innerHTML="Enter valid email";
+valid=false;
+}
+
+if(!passwordRegex.test(password)){
+document.getElementById("passwordError").innerHTML="Password must contain letters and numbers";
+valid=false;
+}
+
+if(password !== confirmPassword){
+document.getElementById("confirmError").innerHTML="Passwords do not match";
+valid=false;
+}
+
+if(!phoneRegex.test(phone)){
+document.getElementById("phoneError").innerHTML="Enter valid 10 digit phone number";
+valid=false;
+}
+
+if(valid){
+alert("Registration Successful");
+}
+
+});
+
+</script>
+
+</body>
+</html>
